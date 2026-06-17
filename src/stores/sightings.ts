@@ -141,6 +141,13 @@ export const useSightingsStore = defineStore('sightings', {
     removeSighting(id: string): void {
       this.sightings = this.sightings.filter((s) => s.id !== id)
     },
+
+    mergeSightings(incoming: Sighting[]): number {
+      const existingIds = new Set(this.sightings.map((s) => s.id))
+      const newRecords = incoming.filter((s) => !existingIds.has(s.id))
+      this.sightings.push(...newRecords)
+      return newRecords.length
+    },
   },
 
   persist: {

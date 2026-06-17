@@ -13,7 +13,7 @@ import {
   zhCN,
   dateZhCN,
 } from 'naive-ui'
-import { Feather as BirdIcon, List as ListIcon, Book as BookIcon, ChartBar as ChartIcon } from '@vicons/tabler'
+import { Feather as BirdIcon, List as ListIcon, Book as BookIcon, ChartBar as ChartIcon, Settings as SettingsIcon } from '@vicons/tabler'
 
 const router = useRouter()
 
@@ -68,6 +68,15 @@ const currentRoute = computed(() => router.currentRoute.value.name as string)
               <NIcon><BirdIcon /></NIcon>
             </template>
             新建记录
+          </NButton>
+          <NButton
+            :type="currentRoute === 'settings' ? 'primary' : 'default'"
+            @click="router.push('/settings')"
+          >
+            <template #icon>
+              <NIcon><SettingsIcon /></NIcon>
+            </template>
+            设置
           </NButton>
         </NSpace>
       </div>

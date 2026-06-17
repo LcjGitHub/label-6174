@@ -37,6 +37,12 @@ const router = createRouter({
       component: () => import('@/views/Statistics.vue'),
       meta: { title: '统计概览' },
     },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('@/views/Settings.vue'),
+      meta: { title: '数据备份' },
+    },
   ],
 })
 
