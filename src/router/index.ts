@@ -25,6 +25,12 @@ const router = createRouter({
       component: () => import('@/views/BirdGuide.vue'),
       meta: { title: '鸟种图鉴' },
     },
+    {
+      path: '/statistics',
+      name: 'statistics',
+      component: () => import('@/views/Statistics.vue'),
+      meta: { title: '统计概览' },
+    },
   ],
 })
 

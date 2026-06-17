@@ -34,3 +34,15 @@ export interface SightingForm {
   count: number
   note: string
 }
+
+/**
+ * 鸟种统计信息
+ */
+export interface BirdSpeciesStats {
+  birdId: string
+  name: string
+  scientificName: string
+  imageUrl: string
+  count: number
+  sightingCount: number
+}
