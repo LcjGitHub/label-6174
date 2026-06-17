@@ -20,6 +20,12 @@ const router = createRouter({
       meta: { title: '新建记录' },
     },
     {
+      path: '/edit/:id',
+      name: 'edit',
+      component: () => import('@/views/EditSighting.vue'),
+      meta: { title: '编辑记录' },
+    },
+    {
       path: '/guide',
       name: 'guide',
       component: () => import('@/views/BirdGuide.vue'),

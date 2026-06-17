@@ -30,6 +30,13 @@ export const useSightingsStore = defineStore('sightings', {
     },
 
     /**
+     * 根据 ID 获取目击记录
+     */
+    getSightingById: (state) => (id: string): Sighting | undefined => {
+      return state.sightings.find((s) => s.id === id)
+    },
+
+    /**
      * 目击记录总条数
      */
     totalSightingsCount(state): number {
@@ -107,6 +114,25 @@ export const useSightingsStore = defineStore('sightings', {
       }
 
       this.sightings.push(sighting)
+    },
+
+    /**
+     * 更新目击记录
+     */
+    updateSighting(id: string, form: SightingForm): void {
+      if (!form.birdId || form.date === null) return
+
+      const index = this.sightings.findIndex((s) => s.id === id)
+      if (index === -1) return
+
+      this.sightings[index] = {
+        ...this.sightings[index],
+        birdId: form.birdId,
+        date: dayjs(form.date).format('YYYY-MM-DD'),
+        location: form.location.trim(),
+        count: form.count,
+        note: form.note.trim(),
+      }
     },
 
     /**

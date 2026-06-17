@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import dayjs from 'dayjs'
 import {
   NCard,
@@ -15,6 +16,7 @@ import {
 } from 'naive-ui'
 import { useSightingsStore } from '@/stores/sightings'
 
+const router = useRouter()
 const store = useSightingsStore()
 
 const sightings = computed(() => store.sortedSightings)
@@ -24,6 +26,13 @@ const sightings = computed(() => store.sortedSightings)
  */
 function formatDate(date: string): string {
   return dayjs(date).format('YYYY年MM月DD日')
+}
+
+/**
+ * 编辑记录
+ */
+function handleEdit(id: string): void {
+  router.push(`/edit/${id}`)
 }
 
 /**
@@ -79,12 +88,15 @@ function handleDelete(id: string): void {
               </NSpace>
               <p v-if="item.note" class="note">{{ item.note }}</p>
             </div>
-            <NPopconfirm @positive-click="handleDelete(item.id)">
-              <template #trigger>
-                <NButton size="small" type="error" quaternary>删除</NButton>
-              </template>
-              确定删除这条目击记录吗？
-            </NPopconfirm>
+            <NSpace size="small">
+              <NButton size="small" type="primary" quaternary @click="handleEdit(item.id)">编辑</NButton>
+              <NPopconfirm @positive-click="handleDelete(item.id)">
+                <template #trigger>
+                  <NButton size="small" type="error" quaternary>删除</NButton>
+                </template>
+                确定删除这条目击记录吗？
+              </NPopconfirm>
+            </NSpace>
           </div>
         </NCard>
       </NTimelineItem>
