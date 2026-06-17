@@ -54,7 +54,7 @@ function handleBack(): void {
           height="120"
           object-fit="cover"
           class="bird-image"
-          fallback-src="https://placehold.co/120x120/cccccc/666666?text=Bird"
+          fallback-src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=silhouette%20of%20a%20small%20bird%2C%20minimalist%20icon&image_size=square"
           preview-disabled
         />
         <div class="bird-info">
