@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: '/edit/:id',
       name: 'edit',
-      component: () => import('@/views/EditSighting.vue'),
+      component: () => import('@/views/NewSighting.vue'),
       meta: { title: '编辑记录' },
     },
     {

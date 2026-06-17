@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import {
   NCard,
   NForm,
@@ -12,6 +12,7 @@ import {
   NButton,
   NSpace,
   NImage,
+  NSpin,
   useMessage,
   type FormInst,
   type FormRules,
@@ -21,10 +22,17 @@ import { useSightingsStore } from '@/stores/sightings'
 import type { SightingForm } from '@/types'
 
 const router = useRouter()
+const route = useRoute()
 const message = useMessage()
 const store = useSightingsStore()
 
 const formRef = ref<FormInst | null>(null)
+const dataLoaded = ref(false)
+
+const isEditMode = computed(() => !!route.params.id)
+const sightingId = computed(() => route.params.id as string)
+const pageTitle = computed(() => (isEditMode.value ? '编辑目击记录' : '新建目击记录'))
+const submitButtonText = computed(() => (isEditMode.value ? '保存修改' : '保存记录'))
 
 const formModel = ref<SightingForm>({
   birdId: null,
@@ -67,14 +75,38 @@ const rules: FormRules = {
   ],
 }
 
+onMounted(() => {
+  if (isEditMode.value) {
+    const sighting = store.getSightingById(sightingId.value)
+    if (!sighting) {
+      message.warning('未找到该目击记录')
+      router.push('/sightings')
+      return
+    }
+    formModel.value = {
+      birdId: sighting.birdId,
+      date: dayjs(sighting.date).valueOf(),
+      location: sighting.location,
+      count: sighting.count,
+      note: sighting.note,
+    }
+  }
+  dataLoaded.value = true
+})
+
 /**
  * 提交表单
  */
 async function handleSubmit(): Promise<void> {
   try {
     await formRef.value?.validate()
-    store.addSighting(formModel.value)
-    message.success('记录已保存')
+    if (isEditMode.value) {
+      store.updateSighting(sightingId.value, formModel.value)
+      message.success('记录已更新')
+    } else {
+      store.addSighting(formModel.value)
+      message.success('记录已保存')
+    }
     router.push('/sightings')
   } catch {
     message.warning('请完善表单信息')
@@ -85,21 +117,35 @@ async function handleSubmit(): Promise<void> {
  * 重置表单
  */
 function handleReset(): void {
-  formModel.value = {
-    birdId: null,
-    date: dayjs().valueOf(),
-    location: '',
-    count: 1,
-    note: '',
+  if (isEditMode.value) {
+    const sighting = store.getSightingById(sightingId.value)
+    if (sighting) {
+      formModel.value = {
+        birdId: sighting.birdId,
+        date: dayjs(sighting.date).valueOf(),
+        location: sighting.location,
+        count: sighting.count,
+        note: sighting.note,
+      }
+    }
+  } else {
+    formModel.value = {
+      birdId: null,
+      date: dayjs().valueOf(),
+      location: '',
+      count: 1,
+      note: '',
+    }
   }
 }
 </script>
 
 <template>
   <div class="new-page">
-    <h2 class="page-title">新建目击记录</h2>
+    <h2 class="page-title">{{ pageTitle }}</h2>
 
-    <NCard>
+    <NSpin v-if="!dataLoaded" class="page-loading" />
+    <NCard v-else>
       <NForm
         ref="formRef"
         :model="formModel"
@@ -173,7 +219,7 @@ function handleReset(): void {
 
         <NFormItem>
           <NSpace>
-            <NButton type="primary" @click="handleSubmit">保存记录</NButton>
+            <NButton type="primary" @click="handleSubmit">{{ submitButtonText }}</NButton>
             <NButton @click="handleReset">重置</NButton>
             <NButton quaternary @click="router.push('/sightings')">取消</NButton>
           </NSpace>
@@ -186,6 +232,12 @@ function handleReset(): void {
 <style scoped>
 .new-page {
   padding-bottom: 40px;
+}
+
+.page-loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
 }
 
 .page-title {
