@@ -1,0 +1,138 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import dayjs from 'dayjs'
+import {
+  NCard,
+  NTimeline,
+  NTimelineItem,
+  NEmpty,
+  NButton,
+  NPopconfirm,
+  NSpace,
+  NTag,
+  NImage,
+  NText,
+} from 'naive-ui'
+import { useSightingsStore } from '@/stores/sightings'
+
+const store = useSightingsStore()
+
+const sightings = computed(() => store.sortedSightings)
+
+/**
+ * 格式化日期显示
+ */
+function formatDate(date: string): string {
+  return dayjs(date).format('YYYY年MM月DD日')
+}
+
+/**
+ * 删除记录
+ */
+function handleDelete(id: string): void {
+  store.removeSighting(id)
+}
+</script>
+
+<template>
+  <div class="sightings-page">
+    <h2 class="page-title">目击时间线</h2>
+
+    <NEmpty
+      v-if="sightings.length === 0"
+      description="暂无目击记录，点击「新建记录」开始观鸟吧"
+      style="margin-top: 60px"
+    />
+
+    <NTimeline v-else>
+      <NTimelineItem
+        v-for="item in sightings"
+        :key="item.id"
+        :title="formatDate(item.date)"
+        :time="store.getBirdById(item.birdId)?.name ?? '未知鸟种'"
+        type="success"
+      >
+        <NCard size="small" class="sighting-card">
+          <div class="card-body">
+            <NImage
+              :src="store.getBirdById(item.birdId)?.imageUrl"
+              width="80"
+              height="80"
+              object-fit="cover"
+              class="bird-image"
+              fallback-src="https://placehold.co/80x80/cccccc/666666?text=鸟"
+            />
+            <div class="card-info">
+              <div class="bird-name">
+                {{ store.getBirdById(item.birdId)?.name ?? '未知鸟种' }}
+                <NText depth="3" style="font-size: 13px; margin-left: 8px">
+                  {{ store.getBirdById(item.birdId)?.scientificName }}
+                </NText>
+              </div>
+              <NSpace :size="12" style="margin-top: 8px">
+                <NTag type="info" size="small">
+                  📍 {{ item.location || '未填写地点' }}
+                </NTag>
+                <NTag type="warning" size="small">
+                  数量：{{ item.count }}
+                </NTag>
+              </NSpace>
+              <p v-if="item.note" class="note">{{ item.note }}</p>
+            </div>
+            <NPopconfirm @positive-click="handleDelete(item.id)">
+              <template #trigger>
+                <NButton size="small" type="error" quaternary>删除</NButton>
+              </template>
+              确定删除这条目击记录吗？
+            </NPopconfirm>
+          </div>
+        </NCard>
+      </NTimelineItem>
+    </NTimeline>
+  </div>
+</template>
+
+<style scoped>
+.sightings-page {
+  padding-bottom: 40px;
+}
+
+.page-title {
+  margin: 0 0 24px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+
+.sighting-card {
+  margin-top: 4px;
+}
+
+.card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.bird-image {
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.bird-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.note {
+  margin: 8px 0 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>
