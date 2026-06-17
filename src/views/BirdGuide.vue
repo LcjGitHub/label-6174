@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import {
   NInput,
   NGrid,
@@ -26,10 +26,15 @@ const filteredBirds = computed(() => {
   const keyword = searchKeyword.value.trim().toLowerCase()
   if (!keyword) return store.birds
   return store.birds.filter(
-    (bird) =>
-      bird.name.toLowerCase().includes(keyword) ||
-      bird.scientificName.toLowerCase().includes(keyword)
+    (bird) => bird.name.toLowerCase().includes(keyword)
   )
+})
+
+watch(filteredBirds, (birds) => {
+  if (selectedBird.value && !birds.some((b) => b.id === selectedBird.value!.id)) {
+    showModal.value = false
+    selectedBird.value = null
+  }
 })
 
 function handleCardClick(bird: Bird): void {
@@ -66,7 +71,15 @@ function handleCloseModal(): void {
 
     <NGrid v-else :x-gap="16" :y-gap="16" :cols="3" responsive="screen" item-responsive>
       <NGi v-for="bird in filteredBirds" :key="bird.id" span="3 m:1">
-        <NCard hoverable class="bird-card" @click="handleCardClick(bird)">
+        <NCard
+          hoverable
+          class="bird-card"
+          tabindex="0"
+          role="button"
+          :aria-label="`查看${bird.name}详情`"
+          @click="handleCardClick(bird)"
+          @keydown.enter="handleCardClick(bird)"
+        >
           <div class="card-content">
             <NImage
               :src="bird.imageUrl"
@@ -74,7 +87,7 @@ function handleCloseModal(): void {
               height="100"
               object-fit="cover"
               class="card-image"
-              fallback-src="https://placehold.co/100x100/cccccc/666666?text=鸟"
+              fallback-src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=silhouette%20of%20a%20small%20bird%2C%20minimalist%20icon&image_size=square"
               preview-disabled
             />
             <div class="card-text">
@@ -103,7 +116,7 @@ function handleCloseModal(): void {
             height="140"
             object-fit="cover"
             class="modal-image"
-            fallback-src="https://placehold.co/140x140/cccccc/666666?text=鸟"
+            fallback-src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=silhouette%20of%20a%20small%20bird%2C%20minimalist%20icon&image_size=square"
             preview-disabled
           />
           <div class="modal-info">
@@ -145,6 +158,13 @@ function handleCloseModal(): void {
 }
 
 .bird-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bird-card:focus-visible {
+  outline: 2px solid #18a058;
+  outline-offset: 2px;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

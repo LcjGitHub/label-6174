@@ -3,168 +3,168 @@
     "id": "bird-001",
     "name": "麻雀",
     "scientificName": "Passer montanus",
-    "imageUrl": "https://placehold.co/120x120/4a7c59/ffffff?text=麻雀",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Eurasian%20Tree%20Sparrow%20perching%20on%20a%20branch%2C%20small%20brown%20bird%2C%20nature%20photography&image_size=square",
     "description": "麻雀是雀科雀属的常见鸟类，体长约14厘米，头顶及颈部栗褐色，背部褐色杂有黑色条纹。性喜群居，常在人类聚居地附近活动，以谷物和昆虫为食，是城市与乡村最易观察到的鸟类之一。"
   },
   {
     "id": "bird-002",
     "name": "喜鹊",
     "scientificName": "Pica pica",
-    "imageUrl": "https://placehold.co/120x120/2c3e50/ffffff?text=喜鹊",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Black-billed%20Magpie%20with%20black%20and%20white%20plumage%20and%20long%20tail%2C%20nature%20photography&image_size=square",
     "description": "喜鹊属鸦科，体长约45厘米，羽毛黑白相间，尾羽修长带有蓝绿色金属光泽。生性机警聪慧，常成对活动，叫声响亮。在中国传统文化中象征吉祥，常见于开阔地带和村落附近。"
   },
   {
     "id": "bird-003",
     "name": "乌鸦",
     "scientificName": "Corvus macrorhynchos",
-    "imageUrl": "https://placehold.co/120x120/1a1a2e/ffffff?text=乌鸦",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Large-billed%20Crow%20perching%2C%20glossy%20black%20bird%2C%20nature%20photography&image_size=square",
     "description": "大嘴乌鸦属鸦科，体长约50厘米，通体黑色具紫蓝色金属光泽，喙粗壮。智力极高，能使用工具解决复杂问题。杂食性，适应力极强，在城市和野外均能生存繁衍。"
   },
   {
     "id": "bird-004",
     "name": "白鹭",
     "scientificName": "Egretta garzetta",
-    "imageUrl": "https://placehold.co/120x120/e8f4f8/333333?text=白鹭",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Little%20Egret%20wading%20in%20shallow%20water%2C%20pure%20white%20heron%2C%20nature%20photography&image_size=square",
     "description": "白鹭属鹭科，体长约60厘米，全身洁白如雪，喙和腿均为黑色，脚趾黄色。常在浅水区域优雅踱步觅食，以小鱼虾和水生昆虫为食。繁殖期头后会长出细长饰羽，姿态极为优美。"
   },
   {
     "id": "bird-005",
     "name": "苍鹭",
     "scientificName": "Ardea cinerea",
-    "imageUrl": "https://placehold.co/120x120/6b8e9f/ffffff?text=苍鹭",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Grey%20Heron%20standing%20by%20water%2C%20large%20grey%20wading%20bird%2C%20nature%20photography&image_size=square",
     "description": "苍鹭属鹭科，体长约90厘米，是体型较大的涉禽。上体灰色，下体白色，头顶白色具黑色冠羽。常独自站在水边长时间不动，伺机捕食鱼类和蛙类，故有「长脖老等」之俗称。"
   },
   {
     "id": "bird-006",
     "name": "戴胜",
     "scientificName": "Upupa epops",
-    "imageUrl": "https://placehold.co/120x120/c97b3a/ffffff?text=戴胜",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Eurasian%20Hoopoe%20with%20orange%20crest%20fanned%20out%2C%20striking%20bird%2C%20nature%20photography&image_size=square",
     "description": "戴胜属戴胜科，体长约30厘米，头上有醒目的扇形橙黄色冠羽，展开时如花扇般美丽。上体棕色下体白色，翅膀和尾羽具黑白相间条纹。叫声为低沉的「呼—扑—扑」，常在地面上觅食昆虫。"
   },
   {
     "id": "bird-007",
     "name": "翠鸟",
     "scientificName": "Alcedo atthis",
-    "imageUrl": "https://placehold.co/120x120/00838f/ffffff?text=翠鸟",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Common%20Kingfisher%20perching%20over%20water%2C%20brilliant%20blue%20and%20orange%20bird%2C%20nature%20photography&image_size=square",
     "description": "翠鸟属翠鸟科，体长约16厘米，背部翠蓝色鲜艳夺目，腹部橘红色，喙黑色细长。常栖于水边枝头，以闪电般的速度俯冲入水捕鱼，是水域环境中的标志性鸟类，被誉为「溪流中的蓝宝石」。"
   },
   {
     "id": "bird-008",
     "name": "燕子",
     "scientificName": "Hirundo rustica",
-    "imageUrl": "https://placehold.co/120x120/1565c0/ffffff?text=燕子",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Barn%20Swallow%20in%20flight%2C%20forked%20tail%2C%20steel%20blue%20upperparts%2C%20nature%20photography&image_size=square",
     "description": "家燕属燕科，体长约20厘米，上体钢蓝色，下体白色，喉部及额部栗红色，尾羽深叉形。飞行极为敏捷，以空中飞虫为食。每年春季迁徙返回，常在人类屋檐下筑巢繁殖，是春天的象征。"
   },
   {
     "id": "bird-009",
     "name": "啄木鸟",
     "scientificName": "Dendrocopos major",
-    "imageUrl": "https://placehold.co/120x120/8d6e63/ffffff?text=啄木鸟",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Great%20Spotted%20Woodpecker%20on%20tree%20trunk%2C%20black%20white%20red%20bird%2C%20nature%20photography&image_size=square",
     "description": "大斑啄木鸟属啄木鸟科，体长约24厘米，背部黑色具白色肩斑，腹部白色，尾下覆羽红色。雄鸟枕部有红色斑块。以喙敲击树干觅食树皮下的昆虫，是森林中的「医生」，对控制林木害虫有重要作用。"
   },
   {
     "id": "bird-010",
     "name": "黄鹂",
     "scientificName": "Oriolus chinensis",
-    "imageUrl": "https://placehold.co/120x120/f9a825/333333?text=黄鹂",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Black-naped%20Oriole%2C%20golden%20yellow%20bird%20with%20black%20mask%2C%20nature%20photography&image_size=square",
     "description": "黑枕黄鹂属黄鹂科，体长约26厘米，通体金黄色，过眼纹及枕部黑色如戴面具。鸣声清脆婉转，有「黄莺出谷」之美喻。常在高大乔木树冠层活动，以昆虫和浆果为食，是夏季林间的歌唱家。"
   },
   {
     "id": "bird-011",
     "name": "画眉",
     "scientificName": "Garrulax canorus",
-    "imageUrl": "https://placehold.co/120x120/795548/ffffff?text=画眉",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Hwamei%20bird%20with%20white%20eyering%2C%20brown%20plumage%2C%20nature%20photography&image_size=square",
     "description": "画眉属噪鹛科，体长约23厘米，上体棕褐色，下体浅棕色，眼周有明显的白色眉纹如画就一般，故得名。鸣声悠扬多变，善于模仿其他鸟类叫声，是中国传统笼养观赏鸟之一，也是重庆市市鸟。"
   },
   {
     "id": "bird-012",
     "name": "白头鹎",
     "scientificName": "Pycnonotus sinensis",
-    "imageUrl": "https://placehold.co/120x120/9e9e9e/ffffff?text=白头鹎",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Light-vented%20Bulbul%2C%20black%20head%20with%20white%20nape%2C%20nature%20photography&image_size=square",
     "description": "白头鹎属鹎科，体长约19厘米，头顶黑色，枕部白色极为醒目，故称「白头翁」。性活泼好动，常成群在灌木丛和行道树间穿飞，以果实和昆虫为食。是长江以南地区最常见的城市鸟类之一。"
   },
   {
     "id": "bird-013",
     "name": "红嘴蓝鹊",
     "scientificName": "Urocissa erythroryncha",
-    "imageUrl": "https://placehold.co/120x120/283593/ffffff?text=红嘴蓝鹊",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Red-billed%20Blue%20Magpie%2C%20long%20blue%20tail%2C%20red%20bill%2C%20nature%20photography&image_size=square",
     "description": "红嘴蓝鹊属鸦科，体长约65厘米，头颈部黑色，背腹蓝色，尾羽修长末端白色，喙和脚均为鲜红色。飞行时长尾飘飘如丝带飘舞，姿态极为华丽。性凶猛，会集群驱赶靠近巢区的入侵者。"
   },
   {
     "id": "bird-014",
     "name": "斑鸠",
     "scientificName": "Streptopelia chinensis",
-    "imageUrl": "https://placehold.co/120x120/a1887f/ffffff?text=斑鸠",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Spotted%20Dove%2C%20gentle%20brown%20bird%20with%20neck%20pattern%2C%20nature%20photography&image_size=square",
     "description": "珠颈斑鸠属鸠鸽科，体长约30厘米，头灰色，背翅灰褐色，颈部有黑白相间的珠状斑纹环带。叫声为低沉重复的「咕—咕—咕」，常在地面觅食种子和谷物，是城市公园和居民区常见鸟类。"
   },
   {
     "id": "bird-015",
     "name": "夜鹭",
     "scientificName": "Nycticorax nycticorax",
-    "imageUrl": "https://placehold.co/120x120/37474f/ffffff?text=夜鹭",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Black-crowned%20Night%20Heron%2C%20stocky%20heron%20with%20black%20crown%2C%20nature%20photography&image_size=square",
     "description": "夜鹭属鹭科，体长约60厘米，头顶及背部黑色带蓝色金属光泽，下体白色，虹膜红色。白天常缩颈蹲伏于树上休息，黄昏后开始活跃觅食，以鱼类、蛙类和水生昆虫为食，是夜行性涉禽。"
   },
   {
     "id": "bird-016",
     "name": "池鹭",
     "scientificName": "Ardeola bacchus",
-    "imageUrl": "https://placehold.co/120x120/558b2f/ffffff?text=池鹭",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chinese%20Pond%20Heron%20by%20rice%20paddy%2C%20nature%20photography&image_size=square",
     "description": "池鹭属鹭科，体长约45厘米，繁殖期头颈及背部具深栗红色长羽，非繁殖期转为褐色纵纹。常在稻田和池塘边静立觅食，以小鱼、虾和蛙类为食。飞行时缩颈伸腿，翅膀白色极为醒目。"
   },
   {
     "id": "bird-017",
     "name": "黑水鸡",
     "scientificName": "Gallinula chloropus",
-    "imageUrl": "https://placehold.co/120x120/33691e/ffffff?text=黑水鸡",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Common%20Moorhen%20swimming%20in%20pond%2C%20dark%20bird%20with%20red%20bill%2C%20nature%20photography&image_size=square",
     "description": "黑水鸡属秧鸡科，体长约33厘米，通体黑褐色，额甲鲜红色，尾羽下方有白色斑块。善游泳，常在水面浮游或在水生植物间穿行觅食，以水生植物嫩芽和小型水生动物为食，是湿地常见水鸟。"
   },
   {
     "id": "bird-018",
     "name": "普通鸬鹚",
     "scientificName": "Phalacrocorax carbo",
-    "imageUrl": "https://placehold.co/120x120/263238/ffffff?text=鸬鹚",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Great%20Cormorant%20spreading%20wings%2C%20dark%20water%20bird%2C%20nature%20photography&image_size=square",
     "description": "普通鸬鹚属鸬鹚科，体长约80厘米，通体黑色带紫色金属光泽，面部裸露皮肤黄色，喙长而末端具钩。善于潜水捕鱼，常在水面上仅露长颈如蛇状游泳。中国南方有驯养鸬鹚捕鱼的传统。"
   },
   {
     "id": "bird-019",
     "name": "红隼",
     "scientificName": "Falco tinnunculus",
-    "imageUrl": "https://placehold.co/120x120/b71c1c/ffffff?text=红隼",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Common%20Kestrel%20hovering%20in%20sky%2C%20falcon%20with%20rusty%20back%2C%20nature%20photography&image_size=square",
     "description": "红隼属隼科，体长约33厘米，雄鸟头部灰色，背部红褐色具黑色斑点，雌鸟体色偏棕色。善于空中悬停振翅观察地面猎物，发现目标后俯冲捕食，是城市中常见的猛禽，常在高楼间翱翔。"
   },
   {
     "id": "bird-020",
     "name": "大斑啄木鸟",
     "scientificName": "Dendrocopos major",
-    "imageUrl": "https://placehold.co/120x120/5d4037/ffffff?text=大斑啄木鸟",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Great%20Spotted%20Woodpecker%20drumming%20on%20tree%2C%20nature%20photography&image_size=square",
     "description": "大斑啄木鸟是啄木鸟科中最常见的种类，体长约24厘米。翅上白色肩斑和尾下红色覆羽是其显著特征。强健的尾羽支撑身体在树干上攀爬，用喙敲击树干探测并捕食天牛幼虫等蛀干害虫。"
   },
   {
     "id": "bird-021",
     "name": "灰喜鹊",
     "scientificName": "Cyanopica cyanus",
-    "imageUrl": "https://placehold.co/120x120/607d8b/ffffff?text=灰喜鹊",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Azure-winged%20Magpie%2C%20blue%20and%20grey%20bird%20with%20long%20tail%2C%20nature%20photography&image_size=square",
     "description": "灰喜鹊属鸦科，体长约38厘米，头顶黑色，背部灰蓝色，尾羽天蓝色修长。性喜群居，常数十只成群活动，叫声沙哑嘈杂。以松毛虫等农林害虫为食，是重要的益鸟，多分布于东部和北部地区。"
   },
   {
     "id": "bird-022",
     "name": "珠颈斑鸠",
     "scientificName": "Spilopelia chinensis",
-    "imageUrl": "https://placehold.co/120x120/bcaaa4/333333?text=珠颈斑鸠",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Spotted%20Dove%20on%20ground%2C%20pinkish%20brown%20bird%20with%20necklace%20pattern%2C%20nature%20photography&image_size=square",
     "description": "珠颈斑鸠属鸠鸽科，体长约30厘米，与斑鸠相似但颈部珠状斑纹更为明显。雌雄羽色相近，叫声为柔和重复的「咕咕—咕」。适应城市环境能力强，常在阳台和空调外机等处筑巢繁殖。"
   },
   {
     "id": "bird-023",
     "name": "乌鸫",
     "scientificName": "Turdus merula",
-    "imageUrl": "https://placehold.co/120x120/212121/ffffff?text=乌鸫",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Common%20Blackbird%20male%2C%20all%20black%20with%20orange%20bill%2C%20nature%20photography&image_size=square",
     "description": "乌鸫属鸫科，体长约26厘米，雄鸟通体黑色，喙和眼圈橙黄色，雌鸟体色偏褐。鸣声嘹亮多变，清晨和黄昏常站在高处歌唱，有「百舌鸟」之称。以蚯蚓和浆果为食，是城市绿地的常见居民。"
   },
   {
     "id": "bird-024",
     "name": "大山雀",
     "scientificName": "Parus major",
-    "imageUrl": "https://placehold.co/120x120/ffeb3b/333333?text=大山雀",
+    "imageUrl": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Great%20Tit%2C%20yellow%20belly%20with%20black%20stripe%2C%20nature%20photography&image_size=square",
     "description": "大山雀属山雀科，体长约14厘米，头黑色具白色面颊，胸腹部黄色贯以黑色纵纹。性活泼好动，常在枝叶间跳跃觅食昆虫，冬季也取食种子。适应力强，从山林到城市公园均能见到其身影。"
   }
 ]
