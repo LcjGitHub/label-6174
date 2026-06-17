@@ -8,6 +8,7 @@ import {
   NSelect,
   NDatePicker,
   NInput,
+  NAutoComplete,
   NInputNumber,
   NButton,
   NSpace,
@@ -52,6 +53,17 @@ const birdOptions = computed(() =>
 const selectedBird = computed(() =>
   formModel.value.birdId ? store.getBirdById(formModel.value.birdId) : undefined
 )
+
+const locationOptions = computed(() => {
+  const keyword = formModel.value.location.trim().toLowerCase()
+  const recent = store.recentLocations
+  if (!keyword) {
+    return recent.map((loc) => ({ label: loc, value: loc }))
+  }
+  return recent
+    .filter((loc) => loc.toLowerCase().includes(keyword))
+    .map((loc) => ({ label: loc, value: loc }))
+})
 
 const rules: FormRules = {
   birdId: [{ required: true, message: '请选择鸟种', trigger: ['blur', 'change'] }],
@@ -190,11 +202,11 @@ function handleReset(): void {
         </NFormItem>
 
         <NFormItem label="地点" path="location">
-          <NInput
+          <NAutoComplete
             v-model:value="formModel.location"
+            :options="locationOptions"
             placeholder="如：颐和园、奥森公园"
-            maxlength="100"
-            show-count
+            :input-props="{ maxlength: 100 }"
           />
         </NFormItem>
 

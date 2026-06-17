@@ -123,6 +123,28 @@ export const useSightingsStore = defineStore('sightings', {
 
       return result.sort((a, b) => b.sightingCount - a.sightingCount)
     },
+
+    /**
+     * 最近使用的地点列表，从已有目击记录中提取、去重，按最近使用排序，最多10条
+     */
+    recentLocations(state): string[] {
+      const sorted = [...state.sightings].sort(
+        (a, b) => dayjs(b.date).valueOf() - dayjs(a.date).valueOf()
+      )
+      const seen = new Set<string>()
+      const result: string[] = []
+
+      for (const sighting of sorted) {
+        const location = sighting.location.trim()
+        if (location && !seen.has(location)) {
+          seen.add(location)
+          result.push(location)
+          if (result.length >= 10) break
+        }
+      }
+
+      return result
+    },
   },
 
   actions: {
