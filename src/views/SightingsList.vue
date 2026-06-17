@@ -24,13 +24,17 @@ const store = useSightingsStore()
 const selectedBirdId = ref('')
 const locationKeyword = ref('')
 
-const birdOptions = computed(() => [
-  { label: '全部鸟种', value: '' },
-  ...store.birds.map((bird) => ({
-    label: bird.name,
-    value: bird.id,
-  })),
-])
+const birdOptions = computed(() => {
+  const sightingBirdIds = new Set(store.sightings.map((s) => s.birdId))
+  const birdsWithSightings = store.birds.filter((bird) => sightingBirdIds.has(bird.id))
+  return [
+    { label: '全部鸟种', value: '' },
+    ...birdsWithSightings.map((bird) => ({
+      label: bird.name,
+      value: bird.id,
+    })),
+  ]
+})
 
 const sightings = computed(() =>
   store.getFilteredSightings(selectedBirdId.value, locationKeyword.value)
@@ -68,28 +72,30 @@ function handleDelete(id: string): void {
     <h2 class="page-title">目击时间线</h2>
 
     <div class="filter-bar">
-      <NSpace :size="12" wrap>
+      <div class="filter-row">
         <NSelect
           v-model:value="selectedBirdId"
           :options="birdOptions"
           placeholder="选择鸟种"
-          style="width: 180px"
           clearable
+          :dropdown-props="{ to: false, placement: 'bottom-start' }"
+          class="filter-select"
         />
         <NInput
           v-model:value="locationKeyword"
           placeholder="输入地点关键词"
-          style="width: 220px"
           clearable
+          class="filter-input"
         />
         <NButton
           v-if="selectedBirdId || locationKeyword"
           size="small"
           @click="handleClearFilters"
+          class="filter-button"
         >
           清空筛选
         </NButton>
-      </NSpace>
+      </div>
     </div>
 
     <NEmpty
@@ -193,6 +199,30 @@ function handleDelete(id: string): void {
   padding: 16px;
   background: #f5f5f5;
   border-radius: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.filter-select {
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.filter-input {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.filter-button {
+  flex-shrink: 0;
 }
 
 .sighting-card {
