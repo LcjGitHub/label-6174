@@ -202,12 +202,16 @@ function handleReset(): void {
         </NFormItem>
 
         <NFormItem label="地点" path="location">
-          <NAutoComplete
-            v-model:value="formModel.location"
-            :options="locationOptions"
-            placeholder="如：颐和园、奥森公园"
-            :input-props="{ maxlength: 100 }"
-          />
+          <div class="location-input-wrapper">
+            <NAutoComplete
+              v-model:value="formModel.location"
+              :options="locationOptions"
+              placeholder="如：颐和园、奥森公园"
+              :input-props="{ maxlength: 100 }"
+              :get-show="() => true"
+            />
+            <span class="location-count">{{ formModel.location.length }} / 100</span>
+          </div>
         </NFormItem>
 
         <NFormItem label="数量" path="count">
@@ -284,5 +288,20 @@ function handleReset(): void {
   color: #888;
   margin-top: 4px;
   font-style: italic;
+}
+
+.location-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.location-count {
+  position: absolute;
+  right: 12px;
+  bottom: 5px;
+  font-size: 12px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.38);
+  pointer-events: none;
 }
 </style>

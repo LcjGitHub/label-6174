@@ -128,9 +128,11 @@ export const useSightingsStore = defineStore('sightings', {
      * 最近使用的地点列表，从已有目击记录中提取、去重，按最近使用排序，最多10条
      */
     recentLocations(state): string[] {
-      const sorted = [...state.sightings].sort(
-        (a, b) => dayjs(b.date).valueOf() - dayjs(a.date).valueOf()
-      )
+      const sorted = [...state.sightings].sort((a, b) => {
+        const createdDiff = dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
+        if (createdDiff !== 0) return createdDiff
+        return dayjs(b.date).valueOf() - dayjs(a.date).valueOf()
+      })
       const seen = new Set<string>()
       const result: string[] = []
 
