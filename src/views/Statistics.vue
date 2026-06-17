@@ -7,9 +7,6 @@ import {
   NEmpty,
   NList,
   NListItem,
-  NImage,
-  NText,
-  NTag,
 } from 'naive-ui'
 import {
   FileText as FileTextIcon,
@@ -30,7 +27,7 @@ const speciesStats = computed(() => store.speciesStats)
   <div class="statistics-page">
     <h2 class="page-title">统计概览</h2>
 
-    <NSpace :size="16" class="stats-cards">
+    <NSpace :size="16" class="stats-cards" justify="space-between">
       <NCard class="stat-card" hoverable>
         <div class="stat-card-content">
           <div class="stat-icon-wrapper" style="background: #e8f5e9">
@@ -71,7 +68,7 @@ const speciesStats = computed(() => store.speciesStats)
       </NCard>
     </NSpace>
 
-    <NCard class="species-section" title="鸟种观测排名">
+    <NCard class="species-section" title="鸟种出现次数">
       <NEmpty
         v-if="speciesStats.length === 0"
         description="暂无统计数据，快去记录你的第一次观鸟吧"
@@ -79,39 +76,10 @@ const speciesStats = computed(() => store.speciesStats)
       />
 
       <NList v-else bordered>
-        <NListItem v-for="(item, index) in speciesStats" :key="item.birdId">
+        <NListItem v-for="item in speciesStats" :key="item.birdId">
           <div class="species-item">
-            <div class="rank-badge" :class="'rank-' + (index + 1)">
-              {{ index + 1 }}
-            </div>
-            <NImage
-              :src="item.imageUrl"
-              width="56"
-              height="56"
-              object-fit="cover"
-              class="species-image"
-              fallback-src="https://placehold.co/56x56/cccccc/666666?text=鸟"
-            />
-            <div class="species-info">
-              <div class="species-name">
-                {{ item.name }}
-                <NText depth="3" style="font-size: 12px; margin-left: 6px">
-                  {{ item.scientificName }}
-                </NText>
-              </div>
-              <NSpace :size="10" style="margin-top: 6px">
-                <NTag type="info" size="small">
-                  观测 {{ item.sightingCount }} 次
-                </NTag>
-                <NTag type="warning" size="small">
-                  累计 {{ item.count }} 只
-                </NTag>
-              </NSpace>
-            </div>
-            <div class="species-count">
-              <span class="count-number">{{ item.count }}</span>
-              <span class="count-unit">只</span>
-            </div>
+            <span class="species-name">{{ item.name }}</span>
+            <span class="species-count">{{ item.sightingCount }} 次</span>
           </div>
         </NListItem>
       </NList>
@@ -133,6 +101,8 @@ const speciesStats = computed(() => store.speciesStats)
 
 .stats-cards {
   margin-bottom: 24px;
+  display: flex;
+  width: 100%;
 }
 
 .stat-card {
@@ -168,70 +138,18 @@ const speciesStats = computed(() => store.speciesStats)
 .species-item {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: space-between;
   width: 100%;
-}
-
-.rank-badge {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 14px;
-  color: #fff;
-  background: #999;
-  flex-shrink: 0;
-}
-
-.rank-1 {
-  background: linear-gradient(135deg, #ffd700, #ffb300);
-  box-shadow: 0 2px 8px rgba(255, 179, 0, 0.4);
-}
-
-.rank-2 {
-  background: linear-gradient(135deg, #c0c0c0, #9e9e9e);
-  box-shadow: 0 2px 8px rgba(158, 158, 158, 0.4);
-}
-
-.rank-3 {
-  background: linear-gradient(135deg, #cd7f32, #a0522d);
-  box-shadow: 0 2px 8px rgba(160, 82, 45, 0.4);
-}
-
-.species-image {
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-
-.species-info {
-  flex: 1;
-  min-width: 0;
 }
 
 .species-name {
   font-size: 15px;
-  font-weight: 500;
   color: #333;
 }
 
 .species-count {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  flex-shrink: 0;
-}
-
-.count-number {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   color: #18a058;
-}
-
-.count-unit {
-  font-size: 14px;
-  color: #666;
 }
 </style>

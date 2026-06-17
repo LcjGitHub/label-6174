@@ -85,7 +85,7 @@ export const useSightingsStore = defineStore('sightings', {
         }
       }
 
-      return result.sort((a, b) => b.count - a.count)
+      return result.sort((a, b) => b.sightingCount - a.sightingCount)
     },
   },
 
