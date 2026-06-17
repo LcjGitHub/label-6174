@@ -15,7 +15,6 @@ import {
   NText,
   NSelect,
   NInput,
-  NStatistic,
 } from 'naive-ui'
 import {
   FileText as FileTextIcon,
@@ -30,9 +29,7 @@ const store = useSightingsStore()
 const selectedBirdId = ref('')
 const locationKeyword = ref('')
 
-const totalSightings = computed(() => store.totalSightingsCount)
-const totalBirds = computed(() => store.totalBirdsCount)
-const uniqueSpecies = computed(() => store.uniqueSpeciesCount)
+const summary = computed(() => store.summaryStats)
 
 const birdOptions = computed(() => {
   const sightingBirdIds = new Set(store.sightings.map((s) => s.birdId))
@@ -81,46 +78,37 @@ function handleDelete(id: string): void {
   <div class="sightings-page">
     <h2 class="page-title">目击时间线</h2>
 
-    <NSpace :size="12" class="summary-cards" justify="space-between">
-      <NCard class="summary-card" size="small" hoverable>
-        <div class="summary-card-content">
-          <div class="summary-icon-wrapper" style="background: #e8f5e9">
-            <FileTextIcon class="summary-icon" style="color: #2e7d32" />
-          </div>
-          <NStatistic
-            :value="totalSightings"
-            label="记录总条数"
-            :value-style="{ color: '#2e7d32' }"
-          />
+    <div class="summary-cards">
+      <div class="summary-card" style="--card-color: #2e7d32; --card-bg: #e8f5e9">
+        <div class="summary-icon-wrapper">
+          <FileTextIcon class="summary-icon" />
         </div>
-      </NCard>
+        <div class="summary-text">
+          <div class="summary-value">{{ summary.totalSightings }}</div>
+          <div class="summary-label">记录总条数</div>
+        </div>
+      </div>
 
-      <NCard class="summary-card" size="small" hoverable>
-        <div class="summary-card-content">
-          <div class="summary-icon-wrapper" style="background: #e3f2fd">
-            <BirdIcon class="summary-icon" style="color: #1565c0" />
-          </div>
-          <NStatistic
-            :value="totalBirds"
-            label="观测鸟只合计"
-            :value-style="{ color: '#1565c0' }"
-          />
+      <div class="summary-card" style="--card-color: #1565c0; --card-bg: #e3f2fd">
+        <div class="summary-icon-wrapper">
+          <BirdIcon class="summary-icon" />
         </div>
-      </NCard>
+        <div class="summary-text">
+          <div class="summary-value">{{ summary.totalBirds }}</div>
+          <div class="summary-label">观测鸟只合计数</div>
+        </div>
+      </div>
 
-      <NCard class="summary-card" size="small" hoverable>
-        <div class="summary-card-content">
-          <div class="summary-icon-wrapper" style="background: #fff3e0">
-            <CategoryIcon class="summary-icon" style="color: #e65100" />
-          </div>
-          <NStatistic
-            :value="uniqueSpecies"
-            label="涉及鸟种数"
-            :value-style="{ color: '#e65100' }"
-          />
+      <div class="summary-card" style="--card-color: #e65100; --card-bg: #fff3e0">
+        <div class="summary-icon-wrapper">
+          <CategoryIcon class="summary-icon" />
         </div>
-      </NCard>
-    </NSpace>
+        <div class="summary-text">
+          <div class="summary-value">{{ summary.uniqueSpecies }}</div>
+          <div class="summary-label">涉及鸟种数</div>
+        </div>
+      </div>
+    </div>
 
     <div class="filter-bar">
       <div class="filter-row">
@@ -249,32 +237,90 @@ function handleDelete(id: string): void {
   margin-bottom: 20px;
   display: flex;
   width: 100%;
+  gap: 10px;
 }
 
 .summary-card {
   flex: 1;
   min-width: 0;
-}
-
-.summary-card-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  padding: 12px 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .summary-icon-wrapper {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background: var(--card-bg);
 }
 
 .summary-icon {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
+  color: var(--card-color);
+}
+
+.summary-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.summary-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--card-color);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.summary-label {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 360px) {
+  .summary-cards {
+    gap: 8px;
+  }
+
+  .summary-card {
+    padding: 10px 8px;
+    gap: 8px;
+  }
+
+  .summary-icon-wrapper {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+  }
+
+  .summary-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .summary-value {
+    font-size: 17px;
+  }
+
+  .summary-label {
+    font-size: 11px;
+  }
 }
 
 .filter-bar {

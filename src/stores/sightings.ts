@@ -59,6 +59,19 @@ export const useSightingsStore = defineStore('sightings', {
     },
 
     /**
+     * 汇总摘要：记录总条数、观测鸟只合计数、涉及鸟种数
+     */
+    summaryStats(state): { totalSightings: number; totalBirds: number; uniqueSpecies: number } {
+      const birdIds = new Set(state.sightings.map((s) => s.birdId))
+      const totalBirds = state.sightings.reduce((sum, s) => sum + s.count, 0)
+      return {
+        totalSightings: state.sightings.length,
+        totalBirds,
+        uniqueSpecies: birdIds.size,
+      }
+    },
+
+    /**
      * 根据鸟种 ID 获取该鸟种的全部目击记录，按日期倒序排列
      */
     getSightingsByBirdId: (state) => (birdId: string): Sighting[] => {
