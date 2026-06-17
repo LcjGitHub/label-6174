@@ -68,6 +68,26 @@ export const useSightingsStore = defineStore('sightings', {
     },
 
     /**
+     * 根据鸟种和地点关键词筛选目击记录，按日期倒序排列
+     * @param birdId 鸟种ID，为空字符串则不筛选鸟种
+     * @param locationKeyword 地点关键词，为空字符串则不筛选地点
+     */
+    getFilteredSightings: (state) => (birdId: string, locationKeyword: string): Sighting[] => {
+      let result = [...state.sightings]
+
+      if (birdId) {
+        result = result.filter((s) => s.birdId === birdId)
+      }
+
+      if (locationKeyword.trim()) {
+        const keyword = locationKeyword.trim().toLowerCase()
+        result = result.filter((s) => s.location.toLowerCase().includes(keyword))
+      }
+
+      return result.sort((a, b) => dayjs(b.date).valueOf() - dayjs(a.date).valueOf())
+    },
+
+    /**
      * 各鸟种出现次数统计，按出现次数从高到低排列
      */
     speciesStats(state): BirdSpeciesStats[] {

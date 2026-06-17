@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import dayjs from 'dayjs'
 import {
@@ -13,13 +13,33 @@ import {
   NTag,
   NImage,
   NText,
+  NSelect,
+  NInput,
 } from 'naive-ui'
 import { useSightingsStore } from '@/stores/sightings'
 
 const router = useRouter()
 const store = useSightingsStore()
 
-const sightings = computed(() => store.sortedSightings)
+const selectedBirdId = ref('')
+const locationKeyword = ref('')
+
+const birdOptions = computed(() => [
+  { label: '全部鸟种', value: '' },
+  ...store.birds.map((bird) => ({
+    label: bird.name,
+    value: bird.id,
+  })),
+])
+
+const sightings = computed(() =>
+  store.getFilteredSightings(selectedBirdId.value, locationKeyword.value)
+)
+
+function handleClearFilters(): void {
+  selectedBirdId.value = ''
+  locationKeyword.value = ''
+}
 
 /**
  * 格式化日期显示
@@ -47,9 +67,39 @@ function handleDelete(id: string): void {
   <div class="sightings-page">
     <h2 class="page-title">目击时间线</h2>
 
+    <div class="filter-bar">
+      <NSpace :size="12" wrap>
+        <NSelect
+          v-model:value="selectedBirdId"
+          :options="birdOptions"
+          placeholder="选择鸟种"
+          style="width: 180px"
+          clearable
+        />
+        <NInput
+          v-model:value="locationKeyword"
+          placeholder="输入地点关键词"
+          style="width: 220px"
+          clearable
+        />
+        <NButton
+          v-if="selectedBirdId || locationKeyword"
+          size="small"
+          @click="handleClearFilters"
+        >
+          清空筛选
+        </NButton>
+      </NSpace>
+    </div>
+
     <NEmpty
-      v-if="sightings.length === 0"
+      v-if="sightings.length === 0 && !selectedBirdId && !locationKeyword"
       description="暂无目击记录，点击「新建记录」开始观鸟吧"
+      style="margin-top: 60px"
+    />
+    <NEmpty
+      v-else-if="sightings.length === 0"
+      description="没有符合筛选条件的记录"
       style="margin-top: 60px"
     />
 
@@ -132,10 +182,17 @@ function handleDelete(id: string): void {
 }
 
 .page-title {
-  margin: 0 0 24px;
+  margin: 0 0 16px;
   font-size: 22px;
   font-weight: 600;
   color: #333;
+}
+
+.filter-bar {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
 }
 
 .sighting-card {
