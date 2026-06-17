@@ -19,6 +19,12 @@ const router = createRouter({
       component: () => import('@/views/NewSighting.vue'),
       meta: { title: '新建记录' },
     },
+    {
+      path: '/guide',
+      name: 'guide',
+      component: () => import('@/views/BirdGuide.vue'),
+      meta: { title: '鸟种图鉴' },
+    },
   ],
 })
 

@@ -7,6 +7,8 @@ export interface Bird {
   scientificName: string
   /** 占位图 URL */
   imageUrl: string
+  /** 鸟种简要介绍 */
+  description: string
 }
 
 /**
