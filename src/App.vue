@@ -32,51 +32,56 @@ const currentRoute = computed(() => router.currentRoute.value.name as string)
           </NIcon>
           <span class="brand-title">观鸟目击记录</span>
         </div>
-        <NSpace>
+        <NSpace wrap :size="8">
           <NButton
             :type="currentRoute === 'sightings' ? 'primary' : 'default'"
+            class="nav-btn"
             @click="router.push('/sightings')"
           >
             <template #icon>
               <NIcon><ListIcon /></NIcon>
             </template>
-            时间线
+            <span class="nav-btn-text">时间线</span>
           </NButton>
           <NButton
             :type="currentRoute === 'guide' ? 'primary' : 'default'"
+            class="nav-btn"
             @click="router.push('/guide')"
           >
             <template #icon>
               <NIcon><BookIcon /></NIcon>
             </template>
-            图鉴
+            <span class="nav-btn-text">图鉴</span>
           </NButton>
           <NButton
             :type="currentRoute === 'statistics' ? 'primary' : 'default'"
+            class="nav-btn"
             @click="router.push('/statistics')"
           >
             <template #icon>
               <NIcon><ChartIcon /></NIcon>
             </template>
-            统计
+            <span class="nav-btn-text">统计</span>
           </NButton>
           <NButton
             :type="currentRoute === 'new' ? 'primary' : 'default'"
+            class="nav-btn"
             @click="router.push('/new')"
           >
             <template #icon>
               <NIcon><BirdIcon /></NIcon>
             </template>
-            新建记录
+            <span class="nav-btn-text">新建记录</span>
           </NButton>
           <NButton
             :type="currentRoute === 'settings' ? 'primary' : 'default'"
+            class="nav-btn"
             @click="router.push('/settings')"
           >
             <template #icon>
               <NIcon><SettingsIcon /></NIcon>
             </template>
-            设置
+            <span class="nav-btn-text">设置</span>
           </NButton>
         </NSpace>
       </div>
@@ -95,8 +100,9 @@ const currentRoute = computed(() => router.currentRoute.value.name as string)
 }
 
 .app-header {
-  padding: 0 24px;
-  height: 64px;
+  padding: 12px 24px;
+  min-height: 64px;
+  height: auto;
   display: flex;
   align-items: center;
   background: #fff;
@@ -107,8 +113,10 @@ const currentRoute = computed(() => router.currentRoute.value.name as string)
   max-width: 900px;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  row-gap: 12px;
 }
 
 .brand {
@@ -123,6 +131,11 @@ const currentRoute = computed(() => router.currentRoute.value.name as string)
   font-size: 18px;
   font-weight: 600;
   color: #333;
+  white-space: nowrap;
+}
+
+.nav-btn {
+  flex-shrink: 0;
 }
 
 .app-content {
@@ -130,5 +143,44 @@ const currentRoute = computed(() => router.currentRoute.value.name as string)
   max-width: 900px;
   margin: 0 auto;
   width: 100%;
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    padding: 12px 16px;
+  }
+
+  .header-inner {
+    justify-content: center;
+  }
+
+  .brand {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-btn-text {
+    display: none;
+  }
+
+  .nav-btn {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .app-header {
+    padding: 12px 20px;
+  }
+
+  .header-inner {
+    justify-content: center;
+  }
+
+  .brand {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>

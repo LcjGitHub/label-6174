@@ -6,7 +6,7 @@ export function exportSightingsToFile(sightings: Sighting[]): void {
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
-  link.download = `sightings-backup-${new Date().toISOString().slice(0, 10)}.txt`
+  link.download = `目击记录备份-${new Date().toISOString().slice(0, 10)}.txt`
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)

@@ -142,6 +142,12 @@ export const useSightingsStore = defineStore('sightings', {
       this.sightings = this.sightings.filter((s) => s.id !== id)
     },
 
+    /**
+     * 批量合并目击记录
+     * 与现有数据合并，自动跳过重复编号的记录
+     * @param incoming 待导入的目击记录数组
+     * @returns 实际新增的记录条数
+     */
     mergeSightings(incoming: Sighting[]): number {
       const existingIds = new Set(this.sightings.map((s) => s.id))
       const newRecords = incoming.filter((s) => !existingIds.has(s.id))
