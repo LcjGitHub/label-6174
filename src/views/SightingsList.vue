@@ -15,7 +15,13 @@ import {
   NText,
   NSelect,
   NInput,
+  NStatistic,
 } from 'naive-ui'
+import {
+  FileText as FileTextIcon,
+  Feather as BirdIcon,
+  Tags as CategoryIcon,
+} from '@vicons/tabler'
 import { useSightingsStore } from '@/stores/sightings'
 
 const router = useRouter()
@@ -23,6 +29,10 @@ const store = useSightingsStore()
 
 const selectedBirdId = ref('')
 const locationKeyword = ref('')
+
+const totalSightings = computed(() => store.totalSightingsCount)
+const totalBirds = computed(() => store.totalBirdsCount)
+const uniqueSpecies = computed(() => store.uniqueSpeciesCount)
 
 const birdOptions = computed(() => {
   const sightingBirdIds = new Set(store.sightings.map((s) => s.birdId))
@@ -70,6 +80,47 @@ function handleDelete(id: string): void {
 <template>
   <div class="sightings-page">
     <h2 class="page-title">目击时间线</h2>
+
+    <NSpace :size="12" class="summary-cards" justify="space-between">
+      <NCard class="summary-card" size="small" hoverable>
+        <div class="summary-card-content">
+          <div class="summary-icon-wrapper" style="background: #e8f5e9">
+            <FileTextIcon class="summary-icon" style="color: #2e7d32" />
+          </div>
+          <NStatistic
+            :value="totalSightings"
+            label="记录总条数"
+            :value-style="{ color: '#2e7d32' }"
+          />
+        </div>
+      </NCard>
+
+      <NCard class="summary-card" size="small" hoverable>
+        <div class="summary-card-content">
+          <div class="summary-icon-wrapper" style="background: #e3f2fd">
+            <BirdIcon class="summary-icon" style="color: #1565c0" />
+          </div>
+          <NStatistic
+            :value="totalBirds"
+            label="观测鸟只合计"
+            :value-style="{ color: '#1565c0' }"
+          />
+        </div>
+      </NCard>
+
+      <NCard class="summary-card" size="small" hoverable>
+        <div class="summary-card-content">
+          <div class="summary-icon-wrapper" style="background: #fff3e0">
+            <CategoryIcon class="summary-icon" style="color: #e65100" />
+          </div>
+          <NStatistic
+            :value="uniqueSpecies"
+            label="涉及鸟种数"
+            :value-style="{ color: '#e65100' }"
+          />
+        </div>
+      </NCard>
+    </NSpace>
 
     <div class="filter-bar">
       <div class="filter-row">
@@ -192,6 +243,38 @@ function handleDelete(id: string): void {
   font-size: 22px;
   font-weight: 600;
   color: #333;
+}
+
+.summary-cards {
+  margin-bottom: 20px;
+  display: flex;
+  width: 100%;
+}
+
+.summary-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.summary-card-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.summary-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.summary-icon {
+  width: 22px;
+  height: 22px;
 }
 
 .filter-bar {
