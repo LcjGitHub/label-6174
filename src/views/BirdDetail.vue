@@ -10,8 +10,6 @@ import {
   NButton,
   NImage,
   NText,
-  NTag,
-  NSpace,
 } from 'naive-ui'
 import {
   ArrowLeft as ArrowLeftIcon,
@@ -25,11 +23,6 @@ const store = useSightingsStore()
 const birdId = computed(() => route.params.id as string)
 const bird = computed(() => store.getBirdById(birdId.value))
 const sightings = computed(() => store.getSightingsByBirdId(birdId.value))
-
-const totalSightings = computed(() => sightings.value.length)
-const totalBirds = computed(() =>
-  sightings.value.reduce((sum, s) => sum + s.count, 0)
-)
 
 function formatDate(date: string): string {
   return dayjs(date).format('YYYY年MM月DD日')
@@ -59,7 +52,7 @@ function handleBack(): void {
           height="120"
           object-fit="cover"
           class="bird-image"
-          fallback-src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=silhouette%20of%20a%20small%20bird%2C%20minimalist%20icon&image_size=square"
+          fallback-src="https://placehold.co/120x120/cccccc/666666?text=Bird"
           preview-disabled
         />
         <div class="bird-info">
@@ -67,14 +60,6 @@ function handleBack(): void {
           <NText depth="3" class="bird-scientific" style="font-style: italic">
             {{ bird.scientificName }}
           </NText>
-          <NSpace :size="16" style="margin-top: 12px">
-            <NTag type="info" size="medium">
-              📝 目击记录：{{ totalSightings }} 次
-            </NTag>
-            <NTag type="success" size="medium">
-              🦅 累计数量：{{ totalBirds }} 只
-            </NTag>
-          </NSpace>
         </div>
       </div>
     </NCard>

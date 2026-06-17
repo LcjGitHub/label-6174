@@ -58,7 +58,6 @@ function handleDelete(id: string): void {
         v-for="item in sightings"
         :key="item.id"
         :title="formatDate(item.date)"
-        :time="store.getBirdById(item.birdId)?.name ?? '未知鸟种'"
         type="success"
       >
         <NCard size="small" class="sighting-card">
@@ -95,7 +94,9 @@ function handleDelete(id: string): void {
                   {{ store.getBirdById(item.birdId)?.name }}
                 </router-link>
                 <span v-else>未知鸟种</span>
-                <NText depth="3" style="font-size: 13px; margin-left: 8px">
+              </div>
+              <div v-if="store.getBirdById(item.birdId)?.scientificName" class="bird-scientific">
+                <NText depth="3" style="font-size: 13px; font-style: italic">
                   {{ store.getBirdById(item.birdId)?.scientificName }}
                 </NText>
               </div>
@@ -184,14 +185,17 @@ function handleDelete(id: string): void {
   opacity: 0.85;
 }
 
+.bird-scientific {
+  margin-top: 4px;
+}
+
 .bird-name-link {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
+  color: #18a058;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
 }
 
 .bird-name-link:hover {
-  color: #18a058;
-  text-decoration: underline;
+  opacity: 0.75;
 }
 </style>
