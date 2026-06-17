@@ -69,7 +69,7 @@ function handleDelete(id: string): void {
               height="80"
               object-fit="cover"
               class="bird-image"
-              fallback-src="https://placehold.co/80x80/cccccc/666666?text=鸟"
+              fallback-src="https://placehold.co/80x80/cccccc/666666?text=Bird"
             />
             <div class="card-info">
               <div class="bird-name">
@@ -88,11 +88,11 @@ function handleDelete(id: string): void {
               </NSpace>
               <p v-if="item.note" class="note">{{ item.note }}</p>
             </div>
-            <NSpace size="small">
-              <NButton size="small" type="primary" quaternary @click="handleEdit(item.id)">编辑</NButton>
+            <NSpace vertical size="small" class="card-actions">
+              <NButton size="small" type="primary" @click="handleEdit(item.id)">编辑</NButton>
               <NPopconfirm @positive-click="handleDelete(item.id)">
                 <template #trigger>
-                  <NButton size="small" type="error" quaternary>删除</NButton>
+                  <NButton size="small" type="error" ghost>删除</NButton>
                 </template>
                 确定删除这条目击记录吗？
               </NPopconfirm>
@@ -134,6 +134,11 @@ function handleDelete(id: string): void {
 .card-info {
   flex: 1;
   min-width: 0;
+}
+
+.card-actions {
+  flex-shrink: 0;
+  align-self: center;
 }
 
 .bird-name {

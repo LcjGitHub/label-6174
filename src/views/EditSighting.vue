@@ -12,6 +12,7 @@ import {
   NButton,
   NSpace,
   NImage,
+  NSpin,
   useMessage,
   type FormInst,
   type FormRules,
@@ -27,6 +28,7 @@ const store = useSightingsStore()
 
 const formRef = ref<FormInst | null>(null)
 const sightingId = computed(() => route.params.id as string)
+const dataLoaded = ref(false)
 
 const formModel = ref<SightingForm>({
   birdId: null,
@@ -84,6 +86,7 @@ onMounted(() => {
     count: sighting.count,
     note: sighting.note,
   }
+  dataLoaded.value = true
 })
 
 async function handleSubmit(): Promise<void> {
@@ -115,7 +118,8 @@ function handleReset(): void {
   <div class="edit-page">
     <h2 class="page-title">编辑目击记录</h2>
 
-    <NCard>
+    <NSpin v-if="!dataLoaded" class="page-loading" />
+    <NCard v-else>
       <NForm
         ref="formRef"
         :model="formModel"
@@ -141,7 +145,7 @@ function handleReset(): void {
             height="100"
             object-fit="cover"
             class="preview-image"
-            fallback-src="https://placehold.co/100x100/cccccc/666666?text=鸟"
+            fallback-src="https://placehold.co/100x100/cccccc/666666?text=Bird"
           />
           <div>
             <div class="preview-name">{{ selectedBird.name }}</div>
@@ -202,6 +206,12 @@ function handleReset(): void {
 <style scoped>
 .edit-page {
   padding-bottom: 40px;
+}
+
+.page-loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
 }
 
 .page-title {

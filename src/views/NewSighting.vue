@@ -125,7 +125,7 @@ function handleReset(): void {
             height="100"
             object-fit="cover"
             class="preview-image"
-            fallback-src="https://placehold.co/100x100/cccccc/666666?text=鸟"
+            fallback-src="https://placehold.co/100x100/cccccc/666666?text=Bird"
           />
           <div>
             <div class="preview-name">{{ selectedBird.name }}</div>
