@@ -63,17 +63,38 @@ function handleDelete(id: string): void {
       >
         <NCard size="small" class="sighting-card">
           <div class="card-body">
+            <router-link
+              v-if="store.getBirdById(item.birdId)"
+              :to="`/bird/${item.birdId}`"
+              class="bird-image-link"
+            >
+              <NImage
+                :src="store.getBirdById(item.birdId)?.imageUrl"
+                width="80"
+                height="80"
+                object-fit="cover"
+                class="bird-image"
+                fallback-src="https://placehold.co/80x80/cccccc/666666?text=Bird"
+              />
+            </router-link>
             <NImage
-              :src="store.getBirdById(item.birdId)?.imageUrl"
+              v-else
+              src="https://placehold.co/80x80/cccccc/666666?text=Bird"
               width="80"
               height="80"
               object-fit="cover"
               class="bird-image"
-              fallback-src="https://placehold.co/80x80/cccccc/666666?text=Bird"
             />
             <div class="card-info">
               <div class="bird-name">
-                {{ store.getBirdById(item.birdId)?.name ?? '未知鸟种' }}
+                <router-link
+                  v-if="store.getBirdById(item.birdId)"
+                  :to="`/bird/${item.birdId}`"
+                  class="bird-name-link"
+                >
+                  {{ store.getBirdById(item.birdId)?.name }}
+                </router-link>
+                <span v-else>未知鸟种</span>
                 <NText depth="3" style="font-size: 13px; margin-left: 8px">
                   {{ store.getBirdById(item.birdId)?.scientificName }}
                 </NText>
@@ -151,5 +172,26 @@ function handleDelete(id: string): void {
   color: #666;
   font-size: 14px;
   line-height: 1.5;
+}
+
+.bird-image-link {
+  display: block;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+}
+
+.bird-image-link:hover {
+  opacity: 0.85;
+}
+
+.bird-name-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bird-name-link:hover {
+  color: #18a058;
+  text-decoration: underline;
 }
 </style>

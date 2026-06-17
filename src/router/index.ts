@@ -26,6 +26,12 @@ const router = createRouter({
       meta: { title: '编辑记录' },
     },
     {
+      path: '/bird/:id',
+      name: 'bird-detail',
+      component: () => import('@/views/BirdDetail.vue'),
+      meta: { title: '鸟种详情' },
+    },
+    {
       path: '/guide',
       name: 'guide',
       component: () => import('@/views/BirdGuide.vue'),

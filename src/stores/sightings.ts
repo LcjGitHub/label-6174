@@ -59,6 +59,15 @@ export const useSightingsStore = defineStore('sightings', {
     },
 
     /**
+     * 根据鸟种 ID 获取该鸟种的全部目击记录，按日期倒序排列
+     */
+    getSightingsByBirdId: (state) => (birdId: string): Sighting[] => {
+      return state.sightings
+        .filter((s) => s.birdId === birdId)
+        .sort((a, b) => dayjs(b.date).valueOf() - dayjs(a.date).valueOf())
+    },
+
+    /**
      * 各鸟种出现次数统计，按出现次数从高到低排列
      */
     speciesStats(state): BirdSpeciesStats[] {
