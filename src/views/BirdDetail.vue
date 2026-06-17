@@ -17,6 +17,7 @@ import {
   ArrowLeft as ArrowLeftIcon,
 } from '@vicons/tabler'
 import { useSightingsStore } from '@/stores/sightings'
+import { getSightingsByBirdId } from '@/utils/sightingStats'
 
 const route = useRoute()
 const router = useRouter()
@@ -24,7 +25,7 @@ const store = useSightingsStore()
 
 const birdId = computed(() => route.params.id as string)
 const bird = computed(() => store.getBirdById(birdId.value))
-const sightings = computed(() => store.getSightingsByBirdId(birdId.value))
+const sightings = computed(() => getSightingsByBirdId(store.sightings, birdId.value))
 
 function formatDate(date: string): string {
   return dayjs(date).format('YYYY年MM月DD日')

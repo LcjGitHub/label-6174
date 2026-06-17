@@ -16,6 +16,7 @@ import {
 } from '@vicons/tabler'
 import { useSightingsStore } from '@/stores/sightings'
 import { exportSightingsToFile, parseSightingsFromFile } from '@/utils/backup'
+import { getSortedSightings } from '@/utils/sightingStats'
 
 const store = useSightingsStore()
 const message = useMessage()
@@ -26,7 +27,7 @@ function handleExport() {
     message.warning('暂无目击记录可导出')
     return
   }
-  exportSightingsToFile(store.sortedSightings)
+  exportSightingsToFile(getSortedSightings(store.sightings))
   message.success(`已导出 ${store.sightings.length} 条目击记录`)
 }
 

@@ -20,6 +20,7 @@ import {
 } from 'naive-ui'
 import dayjs from 'dayjs'
 import { useSightingsStore } from '@/stores/sightings'
+import { getRecentLocations } from '@/utils/sightingStats'
 import type { SightingForm } from '@/types'
 
 const router = useRouter()
@@ -56,7 +57,7 @@ const selectedBird = computed(() =>
 
 const locationOptions = computed(() => {
   const keyword = formModel.value.location.trim().toLowerCase()
-  const recent = store.recentLocations
+  const recent = getRecentLocations(store.sightings)
   if (!keyword) {
     return recent.map((loc) => ({ label: loc, value: loc }))
   }

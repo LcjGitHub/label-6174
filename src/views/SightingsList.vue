@@ -22,6 +22,7 @@ import {
   Tags as CategoryIcon,
 } from '@vicons/tabler'
 import { useSightingsStore } from '@/stores/sightings'
+import { getSummaryStats, getFilteredSightings } from '@/utils/sightingStats'
 
 const router = useRouter()
 const store = useSightingsStore()
@@ -29,7 +30,7 @@ const store = useSightingsStore()
 const selectedBirdId = ref('')
 const locationKeyword = ref('')
 
-const summary = computed(() => store.summaryStats)
+const summary = computed(() => getSummaryStats(store.sightings))
 
 const birdOptions = computed(() => {
   const sightingBirdIds = new Set(store.sightings.map((s) => s.birdId))
@@ -44,7 +45,7 @@ const birdOptions = computed(() => {
 })
 
 const sightings = computed(() =>
-  store.getFilteredSightings(selectedBirdId.value, locationKeyword.value)
+  getFilteredSightings(store.sightings, selectedBirdId.value, locationKeyword.value)
 )
 
 function handleClearFilters(): void {

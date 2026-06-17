@@ -14,13 +14,19 @@ import {
   Tags as CategoryIcon,
 } from '@vicons/tabler'
 import { useSightingsStore } from '@/stores/sightings'
+import {
+  getTotalSightingsCount,
+  getTotalBirdsCount,
+  getUniqueSpeciesCount,
+  getSpeciesStats,
+} from '@/utils/sightingStats'
 
 const store = useSightingsStore()
 
-const totalSightings = computed(() => store.totalSightingsCount)
-const totalBirds = computed(() => store.totalBirdsCount)
-const uniqueSpecies = computed(() => store.uniqueSpeciesCount)
-const speciesStats = computed(() => store.speciesStats)
+const totalSightings = computed(() => getTotalSightingsCount(store.sightings))
+const totalBirds = computed(() => getTotalBirdsCount(store.sightings))
+const uniqueSpecies = computed(() => getUniqueSpeciesCount(store.sightings))
+const speciesStats = computed(() => getSpeciesStats(store.sightings, store.birds))
 </script>
 
 <template>
