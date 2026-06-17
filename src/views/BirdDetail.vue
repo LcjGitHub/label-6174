@@ -10,6 +10,8 @@ import {
   NButton,
   NImage,
   NText,
+  NSpace,
+  NTag,
 } from 'naive-ui'
 import {
   ArrowLeft as ArrowLeftIcon,
