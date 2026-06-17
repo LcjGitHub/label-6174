@@ -79,6 +79,7 @@ onMounted(() => {
   if (isEditMode.value) {
     const sighting = store.getSightingById(sightingId.value)
     if (!sighting) {
+      dataLoaded.value = true
       message.warning('未找到该目击记录')
       router.push('/sightings')
       return
@@ -102,7 +103,7 @@ async function handleSubmit(): Promise<void> {
     await formRef.value?.validate()
     if (isEditMode.value) {
       store.updateSighting(sightingId.value, formModel.value)
-      message.success('记录已更新')
+      message.success('保存成功')
     } else {
       store.addSighting(formModel.value)
       message.success('记录已保存')
